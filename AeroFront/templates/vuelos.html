@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% include 'messages.html' %}
+{% block contenido %}
+{% csrf_token %}
+<div class="card" id="card" style="font-size: medium">
+    <div class="card-header" background-color:"black">
+        Listar Vuelos
+    </div>
+    <div class="card-body"background-color:>
+    <a name="" id="" class="btn btn-info btn-sm" href="{% url 'altavuelo' %}" role="button">Agregar</a>
+    <br>
+        <h4 class="card-title">Vuelos</h4>
+        
+        <div class="table-responsive">
+            <table class="table table-primary table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Piloto</th>
+                        <th scope="col">Avion</th>
+                        <th scope="col">Inicio</th>
+                        <th scope="col">Fin</th>
+                        <th scope="col">Tiempo V.</th>
+                        <th scope="col">Origen</th>
+                        <th scope="col">Destino</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for vuelo in vuelos %}
+                    <tr class="">
+                        <td>{{vuelo.apellido}} {{vuelo.nombre}}</td>
+                        <td>{{vuelo.matricula}}</td>
+                        <td>{{vuelo.inicio}}</td>
+                        <td>{{vuelo.fin}}</td>
+                        <td>{{vuelo.tiempoVuelo}}</td>
+                        <td>{{vuelo.origen}}</td>
+                        <td>{{vuelo.destino}}</td>
+                        <td>
+                            <a name="" id="" href="{% url 'editarvuelo' vuelo.id%}" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            
+                            <a name="" id="" href="{% url 'eliminarvuelo' vuelo.id%}" role="button"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

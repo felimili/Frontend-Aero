@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% include 'messages.html' %}
+{% block contenido %}
+{% csrf_token %}
+<div class="card" id="card" style="font-size: medium">
+    <div class="card-header" background-color:"black">
+        Listar Aviones
+    </div>
+    <div class="card-body"background-color:>
+    <a name="" id="" class="btn btn-info btn-sm" href="{%url 'altaavion'%}" role="button">Agregar</a>
+    <br>
+        <h4 class="card-title">Aviones</h4>
+        
+        <div class="table-responsive-sm">
+            <table class="table table-primary table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Matricula</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for plane in planes %}
+                    <tr class="">
+                        <td>{{plane.id}}</td>
+                        <td>{{plane.matricula}}</td>
+                        <td>{{plane.marca}}</td>
+                        <td>{{plane.modelo}}</td>
+                        <td>
+                            <a name="" id="" href="{% url 'editaravion' plane.id%}" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            
+                            <a name="" id="" href="{% url 'eliminaravion' plane.id%}" role="button"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}
+
+

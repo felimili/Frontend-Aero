@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% include 'messages.html' %}
+{% block contenido %}
+
+<div class="card" style="font-size: medium;">
+    <div class="card-header">
+        Avion
+    </div>
+    <form action="" method="POST">
+        {% csrf_token %}   
+    <div class="container-avion">
+    
+        <div class="col-6" style="padding-left: 20px;">
+
+                <br>
+                <br>
+                <div class="row mb-3">
+                    <label for="nombre" class="col-sm-2">Matricula</label>
+                    <div class="col-sm-10">
+                        <input type="matricula" name="matricula"class="form-control-sm" id="matricual" value="{{planes.matricula}}">
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <label for="apellido" class="col-sm-2">Marca</label>
+                    <div class="col-sm-10">
+                        <input type="marca" name="marca" class="form-control-sm" id="apellido"value="{{planes.marca}}">
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <label for="email" class="col-sm-2">Modelo</label>
+                    <div class="col-sm-10">
+                        <input type="modelo" name="modelo" class="form-control-sm" id="modelo"value="{{planes.modelo}}">
+                    </div>
+                </div>
+
+                           
+                <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+                
+        </div>  
+        {% endblock %}  
+    </div>
+    </form>
+
+    <div class="card-footer text-muted">
+        Footer 
+    </div>
+</div>
+
+
+
