@@ -16,12 +16,13 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path 
-from app.crud.views import  inicio, login, usuarios, altauser, alta_avion, editar, eliminar, aviones, eliminar_avion, editar_avion,vuelos,altavuelo, eliminar_vuelo, editar_vuelo, upload, download
+from app.crud.views import  inicio, login, usuarios, altauser, alta_avion, editar, eliminar, aviones, eliminar_avion, editar_avion,vuelos,altavuelo, eliminar_vuelo, editar_vuelo, upload, download,logout
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', login, name = 'login'),
+    path('logout/', logout, name = 'logout'),
     path('altauser/', altauser, name = 'altauser'),
     path ('', inicio, name= 'inicio'),
     path('vuelos/', vuelos, name='vuelos'),

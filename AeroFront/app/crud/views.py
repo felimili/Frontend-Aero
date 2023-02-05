@@ -17,20 +17,17 @@ import mimetypes
 
 def inicio(request):
     try:
-        respuesta = me2()
-        if  respuesta is False:
-            return redirect ('login')
-        
+        request.COOKIES['token']
     except:
-            return redirect ('login')  
+        return redirect ('login') 
         
     return render (request, 'base.html')   
 
             
 def me2():
-                    
+    
+            
     tk = "Bearer " + token
-     
     reqUrl = "http://127.0.0.1:8080/api/me"
 
     headersList = {
@@ -40,7 +37,8 @@ def me2():
     "Content-Type": "application/x-www-form-urlencoded" 
     }
 
-    payload = ""
+    payload = tk
+    #response = requests.request("GET", reqUrl, headers=headersList)
     
     response = requests.request("GET", reqUrl, data=payload,  headers=headersList)
     
@@ -53,6 +51,12 @@ def me2():
         return (state) 
     state = True
     return (state)
+
+def logout(request):
+    form = LoginForm()
+    resp = render (request, 'login.html', {'form': form} )
+    resp.delete_cookie('token')
+    return resp
 
 
 def login(request):
@@ -75,11 +79,15 @@ def login(request):
                 
         response = requests.request("POST", url, data=payload,  headers=HEADERS)
         
+        
         token = str(response.text[17:-24])
+             
                
 
         if response.status_code == 200:
-            return redirect ('inicio')
+            resp = render (request,'base.html')
+            resp.set_cookie('token',token, max_age=60)
+            return resp
             
 
         if response.status_code == 400:
@@ -88,19 +96,16 @@ def login(request):
             
         if response.status_code == 401:
             messages.warning(request, 'Credenciales de autenticas invalidas')
+        
            
 
     return render (request, 'login.html', {'form': form})
 
 def altauser(request):
     try:
-        respuesta = me2()
-        
-        if  respuesta is False:
-            return redirect ('login')
-        
+        request.COOKIES['token']
     except:
-        return redirect ('login')  
+        return redirect ('login') 
     
     import requests
     url = "http://127.0.0.1:8080/api/user/"
@@ -127,17 +132,12 @@ def altauser(request):
 
 
 def usuarios(request):
-
     try:
-        respuesta = me2()
-        
-        if  respuesta is False:
-            return redirect ('login')
-        
+        request.COOKIES['token']
     except:
-        return redirect ('login')  
+        return redirect ('login')
     
-
+    
     if request.method == 'GET':
 
         users = Usuario()
@@ -152,13 +152,9 @@ def usuarios(request):
 
 def editar(request,id):
     try:
-        respuesta = me2()
-        
-        if  respuesta is False:
-            return redirect ('login')
-        
+        request.COOKIES['token']
     except:
-        return redirect ('login') 
+        return redirect ('login')
         
     if request.method == 'GET':
 
@@ -195,13 +191,9 @@ def editar(request,id):
 def eliminar(request,id):
 
     try:
-        respuesta = me2()
-        
-        if  respuesta is False:
-            return redirect ('login')
-        
+        request.COOKIES['token']
     except:
-        return redirect ('login') 
+        return redirect ('login')
 
     users = Usuario()
 
@@ -216,14 +208,9 @@ def eliminar(request,id):
 def aviones(request):
 
     try:
-        respuesta = me2()
-        
-        if  respuesta is False:
-            return redirect ('login')
-        
+        request.COOKIES['token']
     except:
-        return redirect ('login') 
-
+        return redirect ('login')
 
     if request.method == 'GET':
 
@@ -239,13 +226,9 @@ def aviones(request):
 def alta_avion(request):
 
     try:
-        respuesta = me2()
-        
-        if  respuesta is False:
-            return redirect ('login')
-        
+        request.COOKIES['token']
     except:
-        return redirect ('login') 
+        return redirect ('login')
 
     
     url = "http://127.0.0.1:8080/api/plane/"
@@ -271,13 +254,9 @@ def alta_avion(request):
 def eliminar_avion(request,id):
 
     try:
-        respuesta = me2()
-        
-        if  respuesta is False:
-            return redirect ('login')
-        
+        request.COOKIES['token']
     except:
-        return redirect ('login') 
+        return redirect ('login')
 
     planes = Avion()
 
@@ -293,13 +272,9 @@ def eliminar_avion(request,id):
 def editar_avion(request,id):
 
     try:
-        respuesta = me2()
-        
-        if  respuesta is False:
-            return redirect ('login')
-        
+        request.COOKIES['token']
     except:
-        return redirect ('login') 
+        return redirect ('login')
 
         
     if request.method == 'GET':
@@ -336,13 +311,9 @@ def editar_avion(request,id):
 def vuelos(request):
 
     try:
-        respuesta = me2()
-        
-        if  respuesta is False:
-            return redirect ('login')
-        
+        request.COOKIES['token']
     except:
-        return redirect ('login') 
+        return redirect ('login')
 
     if request.method == 'GET':
 
@@ -359,13 +330,9 @@ def altavuelo(request):
     
     
     try:
-        respuesta = me2()
-        
-        if  respuesta is False:
-            return redirect ('login')
-        
+        request.COOKIES['token']
     except:
-        return redirect ('login') 
+        return redirect ('login')
     
        
     if request.method  =='GET':
@@ -409,13 +376,9 @@ def altavuelo(request):
         
 def eliminar_vuelo(request,id):
     try:
-        respuesta = me2()
-        
-        if  respuesta is False:
-            return redirect ('login')
-        
+        request.COOKIES['token']
     except:
-        return redirect ('login') 
+        return redirect ('login')
 
     
     if request.method == 'GET':
@@ -430,13 +393,9 @@ def eliminar_vuelo(request,id):
 def editar_vuelo(request,id):
 
     try:
-        respuesta = me2()
-        
-        if  respuesta is False:
-            return redirect ('login')
-        
+        request.COOKIES['token']
     except:
-        return redirect ('login') 
+        return redirect ('login')
 
         
     if request.method == 'GET':
@@ -492,6 +451,11 @@ def editar_vuelo(request,id):
         
 def upload(request,id):
     
+    try:
+        request.COOKIES['token']
+    except:
+        return redirect ('login')
+    
     if request.method == 'GET':
     #    url = "http://127.0.0.1:8080/api/upload/" + str(id)
     #    HEADERS = {
@@ -524,6 +488,11 @@ def upload(request,id):
     return render(request, 'upload.html')
 
 def download(request,id):
+        try:
+            request.COOKIES['token']
+        except:
+            return redirect ('login')
+        
     
         if request.method == 'GET':
     
@@ -543,7 +512,7 @@ def download(request,id):
             mime_type, _ = mimetypes.guess_type(filepath)
             
             response = HttpResponse(path, content_type = mime_type)
-
+            
             response['Content-Disposition'] = "attachment; filename=%s" % filename
                         
             return response
