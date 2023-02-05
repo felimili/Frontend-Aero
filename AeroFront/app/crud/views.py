@@ -17,9 +17,22 @@ import mimetypes
 
 def inicio(request):
     try:
-        request.COOKIES['token']
+        tk = "Bearer " + request.COOKIES['token']
+               
+        url = 'http://127.0.0.1:8080/api/check_sesion'
+        
+        headersList = {
+            "Accept": "*/*",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "Authorization": tk,
+            "Content-Type": "application/x-www-form-urlencoded" 
+                }
+        response = requests.request("GET", url, headers=headersList)
+    
+        if response.status_code == 401:
+            return redirect ('login')
     except:
-        return redirect ('login') 
+        return redirect ('login')
         
     return render (request, 'base.html')   
 
@@ -53,8 +66,8 @@ def me2():
     return (state)
 
 def logout(request):
-    form = LoginForm()
-    resp = render (request, 'login.html', {'form': form} )
+    
+    resp = render (request, 'logout.html')
     resp.delete_cookie('token')
     return resp
 
@@ -86,7 +99,7 @@ def login(request):
 
         if response.status_code == 200:
             resp = render (request,'base.html')
-            resp.set_cookie('token',token, max_age=60)
+            resp.set_cookie('token',token, max_age=305)
             return resp
             
 
@@ -103,9 +116,22 @@ def login(request):
 
 def altauser(request):
     try:
-        request.COOKIES['token']
+        tk = "Bearer " + request.COOKIES['token']
+               
+        url = 'http://127.0.0.1:8080/api/check_sesion'
+        
+        headersList = {
+            "Accept": "*/*",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "Authorization": tk,
+            "Content-Type": "application/x-www-form-urlencoded" 
+                }
+        response = requests.request("GET", url, headers=headersList)
+    
+        if response.status_code == 401:
+            return redirect ('login')
     except:
-        return redirect ('login') 
+        return redirect ('login')
     
     import requests
     url = "http://127.0.0.1:8080/api/user/"
@@ -133,7 +159,20 @@ def altauser(request):
 
 def usuarios(request):
     try:
-        request.COOKIES['token']
+        tk = "Bearer " + request.COOKIES['token']
+               
+        url = 'http://127.0.0.1:8080/api/check_sesion'
+        
+        headersList = {
+            "Accept": "*/*",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "Authorization": tk,
+            "Content-Type": "application/x-www-form-urlencoded" 
+                }
+        response = requests.request("GET", url, headers=headersList)
+    
+        if response.status_code == 401:
+            return redirect ('login')
     except:
         return redirect ('login')
     
@@ -152,7 +191,20 @@ def usuarios(request):
 
 def editar(request,id):
     try:
-        request.COOKIES['token']
+        tk = "Bearer " + request.COOKIES['token']
+               
+        url = 'http://127.0.0.1:8080/api/check_sesion'
+        
+        headersList = {
+            "Accept": "*/*",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "Authorization": tk,
+            "Content-Type": "application/x-www-form-urlencoded" 
+                }
+        response = requests.request("GET", url, headers=headersList)
+    
+        if response.status_code == 401:
+            return redirect ('login')
     except:
         return redirect ('login')
         
@@ -191,7 +243,20 @@ def editar(request,id):
 def eliminar(request,id):
 
     try:
-        request.COOKIES['token']
+        tk = "Bearer " + request.COOKIES['token']
+               
+        url = 'http://127.0.0.1:8080/api/check_sesion'
+        
+        headersList = {
+            "Accept": "*/*",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "Authorization": tk,
+            "Content-Type": "application/x-www-form-urlencoded" 
+                }
+        response = requests.request("GET", url, headers=headersList)
+    
+        if response.status_code == 401:
+            return redirect ('login')
     except:
         return redirect ('login')
 
@@ -208,7 +273,20 @@ def eliminar(request,id):
 def aviones(request):
 
     try:
-        request.COOKIES['token']
+        tk = "Bearer " + request.COOKIES['token']
+               
+        url = 'http://127.0.0.1:8080/api/check_sesion'
+        
+        headersList = {
+            "Accept": "*/*",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "Authorization": tk,
+            "Content-Type": "application/x-www-form-urlencoded" 
+                }
+        response = requests.request("GET", url, headers=headersList)
+    
+        if response.status_code == 401:
+            return redirect ('login')
     except:
         return redirect ('login')
 
@@ -226,7 +304,20 @@ def aviones(request):
 def alta_avion(request):
 
     try:
-        request.COOKIES['token']
+        tk = "Bearer " + request.COOKIES['token']
+               
+        url = 'http://127.0.0.1:8080/api/check_sesion'
+        
+        headersList = {
+            "Accept": "*/*",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "Authorization": tk,
+            "Content-Type": "application/x-www-form-urlencoded" 
+                }
+        response = requests.request("GET", url, headers=headersList)
+    
+        if response.status_code == 401:
+            return redirect ('login')
     except:
         return redirect ('login')
 
@@ -254,7 +345,20 @@ def alta_avion(request):
 def eliminar_avion(request,id):
 
     try:
-        request.COOKIES['token']
+        tk = "Bearer " + request.COOKIES['token']
+               
+        url = 'http://127.0.0.1:8080/api/check_sesion'
+        
+        headersList = {
+            "Accept": "*/*",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "Authorization": tk,
+            "Content-Type": "application/x-www-form-urlencoded" 
+                }
+        response = requests.request("GET", url, headers=headersList)
+    
+        if response.status_code == 401:
+            return redirect ('login')
     except:
         return redirect ('login')
 
@@ -272,7 +376,20 @@ def eliminar_avion(request,id):
 def editar_avion(request,id):
 
     try:
-        request.COOKIES['token']
+        tk = "Bearer " + request.COOKIES['token']
+               
+        url = 'http://127.0.0.1:8080/api/check_sesion'
+        
+        headersList = {
+            "Accept": "*/*",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "Authorization": tk,
+            "Content-Type": "application/x-www-form-urlencoded" 
+                }
+        response = requests.request("GET", url, headers=headersList)
+    
+        if response.status_code == 401:
+            return redirect ('login')
     except:
         return redirect ('login')
 
@@ -311,7 +428,20 @@ def editar_avion(request,id):
 def vuelos(request):
 
     try:
-        request.COOKIES['token']
+        tk = "Bearer " + request.COOKIES['token']
+               
+        url = 'http://127.0.0.1:8080/api/check_sesion'
+        
+        headersList = {
+            "Accept": "*/*",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "Authorization": tk,
+            "Content-Type": "application/x-www-form-urlencoded" 
+                }
+        response = requests.request("GET", url, headers=headersList)
+    
+        if response.status_code == 401:
+            return redirect ('login')
     except:
         return redirect ('login')
 
@@ -330,7 +460,20 @@ def altavuelo(request):
     
     
     try:
-        request.COOKIES['token']
+        tk = "Bearer " + request.COOKIES['token']
+               
+        url = 'http://127.0.0.1:8080/api/check_sesion'
+        
+        headersList = {
+            "Accept": "*/*",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "Authorization": tk,
+            "Content-Type": "application/x-www-form-urlencoded" 
+                }
+        response = requests.request("GET", url, headers=headersList)
+    
+        if response.status_code == 401:
+            return redirect ('login')
     except:
         return redirect ('login')
     
@@ -376,7 +519,20 @@ def altavuelo(request):
         
 def eliminar_vuelo(request,id):
     try:
-        request.COOKIES['token']
+        tk = "Bearer " + request.COOKIES['token']
+               
+        url = 'http://127.0.0.1:8080/api/check_sesion'
+        
+        headersList = {
+            "Accept": "*/*",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "Authorization": tk,
+            "Content-Type": "application/x-www-form-urlencoded" 
+                }
+        response = requests.request("GET", url, headers=headersList)
+    
+        if response.status_code == 401:
+            return redirect ('login')
     except:
         return redirect ('login')
 
@@ -393,7 +549,20 @@ def eliminar_vuelo(request,id):
 def editar_vuelo(request,id):
 
     try:
-        request.COOKIES['token']
+        tk = "Bearer " + request.COOKIES['token']
+               
+        url = 'http://127.0.0.1:8080/api/check_sesion'
+        
+        headersList = {
+            "Accept": "*/*",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "Authorization": tk,
+            "Content-Type": "application/x-www-form-urlencoded" 
+                }
+        response = requests.request("GET", url, headers=headersList)
+    
+        if response.status_code == 401:
+            return redirect ('login')
     except:
         return redirect ('login')
 
@@ -452,7 +621,20 @@ def editar_vuelo(request,id):
 def upload(request,id):
     
     try:
-        request.COOKIES['token']
+        tk = "Bearer " + request.COOKIES['token']
+               
+        url = 'http://127.0.0.1:8080/api/check_sesion'
+        
+        headersList = {
+            "Accept": "*/*",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "Authorization": tk,
+            "Content-Type": "application/x-www-form-urlencoded" 
+                }
+        response = requests.request("GET", url, headers=headersList)
+    
+        if response.status_code == 401:
+            return redirect ('login')
     except:
         return redirect ('login')
     
@@ -489,7 +671,20 @@ def upload(request,id):
 
 def download(request,id):
         try:
-            request.COOKIES['token']
+            tk = "Bearer " + request.COOKIES['token']
+               
+            url = 'http://127.0.0.1:8080/api/check_sesion'
+        
+            headersList = {
+                "Accept": "*/*",
+                "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+                "Authorization": tk,
+                "Content-Type": "application/x-www-form-urlencoded" 
+                    }
+            response = requests.request("GET", url, headers=headersList)
+    
+            if response.status_code == 401:
+                return redirect ('login')
         except:
             return redirect ('login')
         
