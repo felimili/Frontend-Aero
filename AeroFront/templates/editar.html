@@ -2,13 +2,13 @@
 {% load static %}
 {% block contenido %}
 {% include 'messages.html' %}
-{% csrf_token %}  
+ 
 <div class="card" style="font-size: medium;">
     <div class="card-header">
         Listar Usuarios
     </div>
     <form action="" method="POST">
-         
+        {% csrf_token %}      
     <div class="container-pepe">
     
         <div class="col-6" style="padding-left: 20px;">

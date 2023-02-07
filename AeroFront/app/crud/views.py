@@ -115,6 +115,7 @@ def login(request):
     return render (request, 'login.html', {'form': form})
 
 def altauser(request):
+    
     try:
         tk = "Bearer " + request.COOKIES['token']
                
@@ -133,10 +134,11 @@ def altauser(request):
     except:
         return redirect ('login')
     
-    import requests
+    
+        #import requests
     url = "http://127.0.0.1:8080/api/user/"
     HEADERS = {
-        "Content-Type": "application/json"
+    "Content-Type": "application/json"
             }
 
     form = Usuario()
@@ -145,14 +147,10 @@ def altauser(request):
         payload = {"username": str(request.POST['username']) , "password": str(request.POST['password']),"nombre": str(request.POST['nombre']),"apellido": str(request.POST['apellido']),"email": str(request.POST['email'])}
         response = requests.post(url, headers=HEADERS, json= payload)
 
-        if response.status_code == 201:
-            print('ok')
-            print(response)
-            return redirect ('login')
+    if response.status_code == 201:
+        return redirect ('login')
 
-        else:
-            print('no ok')
-            print(response)
+            
     return render (request, 'alta.html', {'form': form})   
 
 
@@ -305,7 +303,7 @@ def alta_avion(request):
 
     try:
         tk = "Bearer " + request.COOKIES['token']
-               
+        print(tk)        
         url = 'http://127.0.0.1:8080/api/check_sesion'
         
         headersList = {
@@ -439,6 +437,7 @@ def vuelos(request):
             "Content-Type": "application/x-www-form-urlencoded" 
                 }
         response = requests.request("GET", url, headers=headersList)
+        
     
         if response.status_code == 401:
             return redirect ('login')
@@ -587,7 +586,7 @@ def editar_vuelo(request,id):
        
         vuelos  = json.loads(response.content)
         
-        vuelos['tiempoVuelo']= str(vuelos['tiempoVuelo'])
+        vuelos['tiempoVuelo']= str(vuelos['tiempovuelo'])
         
         vuelos['tiempoVuelo'] = vuelos['tiempoVuelo'].replace(".",",")
                        

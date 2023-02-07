@@ -100,12 +100,12 @@
 
         <input type="desde" name="desde" class="form-control" value="{{vuelos.origen}}" style="float: left; margin-left: 20px; width: 100px; height: 38px; font-size: 15px;"required>
         <input type="hasta" name="hasta" class="form-control" id="hasta" value="{{vuelos.destino}}" style="float: left; margin-left: 20px; width: 100px; height: 38px; font-size: 15px;"required>
-        <input type="text" name="tiempo_vuelo" class="form-control" id="tiempo_vuelo" value="{{vuelos.tiempoVuelo}}" style="float: left; margin-left: 30px; width: 100px; height: 38px; font-size: 15px;" required>
+        <input type="text" name="tiempo_vuelo" class="form-control" id="tiempo_vuelo" value="{{vuelos.tiempovuelo}}" style="float: left; margin-left: 30px; width: 100px; height: 38px; font-size: 15px;" required>
 
 
     </div>  
         <br>
-        <button type="submit" class="btn btn-primary btn-sm";">Guardar</button>
+        <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
         <a name="" id="" class="btn btn-info btn-sm" href="{% url 'upload' vuelos.id %}" role="button">Upload</a>
         <a class="btn btn-info btn-sm" href="{% url 'download' vuelos.id %}" role="button">Descarga</a>
 
