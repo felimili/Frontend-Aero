@@ -506,7 +506,7 @@ def altavuelo(request):
             messages.warning(request, 'Debe ingresar un Avion')
             return redirect('vuelos')
         
-        payload = {"usuario_id": int(request.POST['piloto']), "avion_Id": int(request.POST['avion']),"inicio": str(request.POST['inicio_f_h']),"fin": str(request.POST['fin_f_h']),"origen": str(request.POST['desde']),"destino": str(request.POST['hasta']),"tiempoVuelo":float(request.POST['tiempo_vuelo']) }
+        payload = {"usuario_id": int(request.POST['piloto']), "avion_Id": int(request.POST['avion']),"inicio": str(request.POST['inicio_f_h']),"fin": str(request.POST['fin_f_h']),"origen": str(request.POST['desde']),"destino": str(request.POST['hasta']),"tiempovuelo":float(request.POST['tiempo_vuelo']) }
     
         response = requests.post(url, headers=HEADERS, json= payload)
         if response.status_code == 201:
@@ -586,9 +586,9 @@ def editar_vuelo(request,id):
        
         vuelos  = json.loads(response.content)
         
-        vuelos['tiempoVuelo']= str(vuelos['tiempovuelo'])
+        vuelos['tiempovuelo']= str(vuelos['tiempovuelo'])
         
-        vuelos['tiempoVuelo'] = vuelos['tiempoVuelo'].replace(".",",")
+        vuelos['tiempovuelo'] = vuelos['tiempovuelo'].replace(".",",")
                        
         return render (request, 'editarvuelo.html', {'vuelos' : vuelos, 'planes' : planes, 'users': users})  
         
@@ -608,7 +608,7 @@ def editar_vuelo(request,id):
         payload = {"usuario_id": int(request.POST['piloto']), "avion_Id": int(request.POST['avion']),
                    "inicio": str(request.POST['inicio_f_h']),"fin": str(request.POST['fin_f_h']),
                    "origen": str(request.POST['desde']),"destino": str(request.POST['hasta']),
-                   "tiempoVuelo":float(tv) }
+                   "tiempovuelo":float(tv) }
         response = requests.put(url, headers=HEADERS, json= payload)
         if response.status_code == 200:
             return redirect('vuelos') 
